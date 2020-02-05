@@ -26,7 +26,10 @@ public class Controller {
     private final Logger logger = LoggerFactory.getLogger(Controller.class);
 
     //Save the uploaded file to this folder
-    private static String UPLOAD_FOLDER = "out/uploads/";
+
+    //private static String UPLOAD_FOLDER = "out/uploads/"; //bei lokalem run
+    private static String UPLOAD_FOLDER = "/usr/app"; // Bei Docker Run
+
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -70,6 +73,11 @@ public class Controller {
                 .contentLength(file.length())
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(fileContent);
+    }
+
+    @GetMapping
+    ResponseEntity<String> getHello() {
+        return ResponseEntity.ok("hiii");
     }
 
 
