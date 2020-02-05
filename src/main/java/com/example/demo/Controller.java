@@ -37,6 +37,12 @@ public class Controller {
             return new ResponseEntity("please select a file!", HttpStatus.BAD_REQUEST);
         }
 
+        File directory = new File(UPLOAD_FOLDER);
+        if (! directory.exists()){
+            directory.mkdir();
+            // If you require it to make the entire directory path including parents,
+            // use directory.mkdirs(); here instead.
+        }
         try {
             saveUploadedFiles(Arrays.asList(file));
         } catch (IOException e) {
@@ -51,7 +57,7 @@ public class Controller {
     public ResponseEntity<byte[]> download(@RequestParam String filename) throws IOException {
 
         logger.debug(String.format("FILENAME: %s", filename));
-        // ...
+
         File file = new File(UPLOAD_FOLDER + filename);
         Path path = Paths.get(file.getAbsolutePath());
         byte[] fileContent = Files.readAllBytes(path);
