@@ -28,7 +28,7 @@ public class Controller {
     //Save the uploaded file to this folder
 
     //private static String UPLOAD_FOLDER = "out/uploads/"; //bei lokalem run
-    private static String UPLOAD_FOLDER = "/usr/app"; // Bei Docker Run
+    private static String UPLOAD_FOLDER = "/usr/app/uploads/"; // Bei Docker Run
 
 
     @PostMapping("/upload")
