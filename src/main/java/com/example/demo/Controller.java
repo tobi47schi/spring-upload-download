@@ -49,10 +49,10 @@ public class Controller {
         try {
             saveUploadedFiles(Arrays.asList(file));
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity("Successfully uploaded - " +
-                file.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
+
+        return ResponseEntity.ok("Successfully uploaded - " + file.getOriginalFilename());
 
     }
 
